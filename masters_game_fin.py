@@ -36,6 +36,49 @@ def feedback_from_1_or_2(cur_player_guess,code,colorList):
 
 	return feedback
 
+def current_knowldege(cur_player,cur_valid_states,colorList):
+	# print("Current valid states for player {}: \n{}".format(cur_player, cur_valid_states))
+	know_pos = {0:[],1:[],2:[]}
+	col_np = {}
+	
+	for col in colorList:
+		col_np[col] = -1
+
+	for code in cur_valid_states:
+		if cur_valid_states[code] == 1:
+			for j in range(len(code)):
+				if not code[j] in know_pos[j]:
+					know_pos[j].append(code[j])
+
+
+
+	know_val = 'K'+str(cur_player)+' ['
+	not_and = 0
+	for pos in know_pos:
+		pos_list = know_pos[pos]
+		for j in range(len(pos_list)):
+			if j == 0:
+				know_val = know_val+ ' ( '+pos_list[j]+str(not_and+1)
+			else :
+				know_val = know_val+ ' \u2228 '+pos_list[j]+str(not_and+1)
+			col_np[pos_list[j]] = not_and
+
+		know_val = know_val + ' ) '
+		col_np[pos_list[j]] = not_and
+		not_and = not_and +1
+		if not not_and == len(know_pos):
+			know_val = know_val + ' \u2227 '
+	
+	
+	#know_val = know_val + ' ] '
+	for col in col_np:
+		if col_np[col] == -1:
+			know_val =  know_val + ' \u2227 '+' \u00ac '+col
+
+
+	know_val = know_val + ' ] '
+	return know_val
+
 
 def get_feedbacks(cur_player_guess,code_1,code_2,color_list):
 
@@ -53,7 +96,6 @@ def find_total_match(str1, str2):
 def make_guess(cur_player,valid_states,code_comb_list,cur_code,colorList):
 
 	code_pref_list = [-1]*10
-	#print(valid_states)
 	for i in range(0,len(code_comb_list)):
 		guess_code = code_comb_list[i]
 		one_match_code = ''
@@ -103,21 +145,21 @@ def filter_inval_states_aft_mov(feedback,guess_code,valid_states,colorList,org_c
 
 			fdback_for_code = feedback_from_1_or_2(code,guess_code,colorList)
 			fdback_for_code2 = feedback_from_1_or_2(org_code,guess_code,colorList)
-			# print('-----------')
-			# print(fdback_for_code)
-			# print(fdback_for_code2)
-			# print(org_code)
-			# print(guess_code)
-			# print(code)
-			# print('-------------')
+			print('-----------')
+			print(fdback_for_code)
+			print(fdback_for_code2)
+			print(org_code)
+			print(guess_code)
+			print(code)
+			print('-------------')
 
-			# print('----------')
-			# print(guess_code)
-			# print(code)
-			# print(org_code)
-			# print(fdback_for_code)
-			# print(fdback_for_code2)
-			# print('---------')
+			print('----------')
+			print(guess_code)
+			print(code)
+			print(org_code)
+			print(fdback_for_code)
+			print(fdback_for_code2)
+			print('---------')
 			if feedback == fdback_for_code:
 				valid_states[code] = 1
 			else:
@@ -156,10 +198,10 @@ def play_game(gsize,colorList):
 	cur_move = 0
 	#code_1 = "bbr"
 	#code_2 = "gbb"
-	# print('*********')
-	# print(code_1)
-	# print(code_2)
-	# print('*********')
+	print('*********')
+	print(code_1)
+	print(code_2)
+	print('*********')
 	while(cur_move < t_num_moves):
 		# print('--------------')
 		# print(valid_states_1)
@@ -171,7 +213,10 @@ def play_game(gsize,colorList):
 
 		else:
 			guess_code = make_guess(2,valid_states_2,code_comb_list,code_2,colorList)
+			print('------------')
+
 			print('cur guess ',str(2),' ',guess_code,' ',code_1)
+			print('----------')
 
 		feedback_one,feedback_two = get_feedbacks(guess_code,code_1,code_2,colorList)
 		if (cur_move %2 == 0) and feedback_two == 'bbb':
@@ -182,8 +227,14 @@ def play_game(gsize,colorList):
 			break;
 		if cur_move %2 == 0:
 			valid_states_1 = filter_inval_states_aft_mov(feedback_two,guess_code,valid_states_1,colorList,code_2)
+			know_val1 = current_knowldege(1,valid_states_1,colorList)
+			print((know_val1))
 		else:
 			valid_states_2 = filter_inval_states_aft_mov(feedback_one,guess_code,valid_states_2,colorList,code_1)
+			know_val2 = current_knowldege(2,valid_states_2,colorList)
+			print((know_val2))
+
+
 		cur_move  += 1
 
 
