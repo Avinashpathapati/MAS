@@ -145,24 +145,49 @@ def filter_inval_states_aft_mov(feedback,guess_code,valid_states,colorList,org_c
 
 			fdback_for_code = feedback_from_1_or_2(code,guess_code,colorList)
 			fdback_for_code2 = feedback_from_1_or_2(org_code,guess_code,colorList)
-			print('-----------')
-			print(fdback_for_code)
-			print(fdback_for_code2)
-			print(org_code)
-			print(guess_code)
-			print(code)
-			print('-------------')
+			feedback_code_dict = {'b':0,'w':0}
+			feedback_code2_dict = {'b':0,'w':0}
+			for code_in in fdback_for_code:
+				if code_in in feedback_code_dict:
+					feedback_code_dict[code_in] = feedback_code_dict[code_in] + 1
 
-			print('----------')
-			print(guess_code)
-			print(code)
-			print(org_code)
-			print(fdback_for_code)
-			print(fdback_for_code2)
-			print('---------')
-			if feedback == fdback_for_code:
+			for code_in in fdback_for_code2:
+				if code_in in feedback_code2_dict:
+					feedback_code2_dict[code_in] = feedback_code2_dict[code_in] + 1
+
+			flag = True
+			for key in feedback_code_dict:
+				if not feedback_code_dict[key] == feedback_code2_dict[key]:
+					flag = False
+					break
+
+			# print('-----------')
+			# print(fdback_for_code)
+			# print(fdback_for_code2)
+			# print(org_code)
+			# print(guess_code)
+			# print(code)
+			# print('-------------')
+
+			# print('----------')
+			# print(guess_code)
+			# print(code)
+			# print(org_code)
+			# print(fdback_for_code)
+			# print(fdback_for_code2)
+			# print('---------')
+
+			if flag:
+				print('--------true')
+				print(fdback_for_code)
+				print(fdback_for_code2)
+				print('--------')
 				valid_states[code] = 1
 			else:
+				print('--------false')
+				print(fdback_for_code)
+				print(fdback_for_code2)
+				print('--------')
 				valid_states[code] = 0
 
 	return valid_states
@@ -196,8 +221,8 @@ def play_game(gsize,colorList):
 
 	t_num_moves = 30
 	cur_move = 0
-	#code_1 = "bbr"
-	#code_2 = "gbb"
+	code_1 = "ygb"
+	code_2 = "ggg"
 	print('*********')
 	print(code_1)
 	print(code_2)
