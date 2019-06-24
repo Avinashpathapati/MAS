@@ -121,6 +121,58 @@
 							</p>
 
 
+							<p>
+								Another strategy is to make guesses following an opponents guess that do not increase common knowledge of your
+								code at all.
+
+								<br>
+								Say, your first code is 'yellow green red' and your first guess is 'green red blue'. The opponent will get feedback
+								of two white pegs. Then your opponent guesses 'yellow yellow red' which gives the feed back of two black pegs.
+								The opponent now knows that you have a red in the third position. This is true because the alternative is that
+								yellow is in the first and second position but this can't be the case as two white pegs were given for the first guess
+								which indicates that two of the three colors appear in the code, so along with the two yellow this would make for positions
+								but there are only three. If yellow is in the first position, blue or green can be in the third. If yellow is in the second position
+								only blue can be in the first as green can't as we would then have gotten a black peg in the feed back for the very first guess.
+
+								This gives the public announcement:
+
+
+							</p>
+
+
+							<p>
+
+								<img src="images/start_noc_1.gif">
+								<!-- <a href="https://www.codecogs.com/eqnedit.php?latex=$$&space;M&space;\models&space;{[&space;(&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;b_3)&space;]}&space;C((&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;y_3&space;)&space;$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$&space;M&space;\models&space;{[&space;(&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;b_3)&space;]}&space;C((&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;y_3&space;)&space;$$" title="$$ M \models {[ ( y_1 \vee b_1) \vee ( y_2 \vee b_2) \vee ( y_3 \vee b_3) ]} C(( y_1 \vee b_1) \vee ( y_2 \vee b_2) \vee ( y_3 \vee y_3 ) $$" /></a>-->
+
+								<!--
+$$
+    M \models {[
+                ( y_1 \wedge r_3)    \vee
+               ( y_2 \wedge r_3)  ]} C( ( y_1 \wedge (b_2 \vee g_2))\wedge r_3) \vee ( b_1 \wedge y_2 \wedge r_3) )
+   $$ -->
+							</p>
+
+
+							<p>
+								Then if you guess 'red red yellow', which may give you more information, the opponent will get two white pegs, this doesn't increase the opponents knowledge of your code
+								at all as we already have:
+
+
+							</p>
+
+							<p>
+
+								<img src="images/start_noc_2.gif">
+
+								<!-- $$
+   K_{opponent} ((y1 \vee y2) \wedge r3)
+   $$ -->
+
+								<!-- <a href="https://www.codecogs.com/eqnedit.php?latex=$$&space;M&space;\models&space;{[&space;(&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;b_3)&space;]}&space;C((&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;y_3&space;)&space;$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$&space;M&space;\models&space;{[&space;(&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;b_3)&space;]}&space;C((&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;y_3&space;)&space;$$" title="$$ M \models {[ ( y_1 \vee b_1) \vee ( y_2 \vee b_2) \vee ( y_3 \vee b_3) ]} C(( y_1 \vee b_1) \vee ( y_2 \vee b_2) \vee ( y_3 \vee y_3 ) $$" /></a>-->
+							</p>
+
+
 						</section>
 
 						<section>
