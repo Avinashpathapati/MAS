@@ -62,6 +62,9 @@
 							<p><img src="images/Kp_updated.png"/></p>
 
 						</section>
+
+
+
 						<section>
 								<header>
 									<h2>Common Knowledge Generation</h2>
@@ -71,6 +74,49 @@
 							</p>
 							<p>For example, if a player guesses <b>Red, Blue, Green</b> and then receives as feedback <i>three white</i> pegs, then the player knows that the color <b>Yellow</b> is not present in the opponent's code. The opponent is also aware of this fact, hence both agents now know that the color <b>Yellow</b> is not present in one of the codes and they know that their respective opponents also know the same, thus this becomes common knowledge.</p>
 							<p><img src="images/Common knowledge.png"/></p>
+						</section>
+
+						<section>
+							<header>
+								<h2>Playing Strategies</h2>
+							</header>
+
+
+
+							<p>When playing, players aim to increase common knowledge about their opponents code while limiting common knowledge about
+								their own. To do this, players can user certain strategies.
+
+								At the start of a game a player might include at least one of the colors in their code in their guess.
+								For example say the players code is yellow yellow green and the
+								players guess is 'red blue blue'.
+								This means no pegs will be given as feedback which results in:
+							</p>
+
+
+							<p>
+
+								<img src="images/strat_onein_1.gif">
+								<!-- <a href="https://www.codecogs.com/eqnedit.php?latex=$$&space;M&space;\models&space;{[&space;\neg(&space;r_1&space;\vee&space;b_1)&space;\wedge&space;\neg(&space;r_2&space;\vee&space;b_2)&space;\wedge&space;\neg(&space;r_3&space;\vee&space;b_3)&space;]}&space;C((&space;g_1&space;\vee&space;y_1)&space;\wedge&space;(&space;g_2&space;\vee&space;y_2)&space;\wedge&space;(&space;g_3&space;\vee&space;y_3&space;)&space;$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$&space;M&space;\models&space;{[&space;\neg(&space;r_1&space;\vee&space;b_1)&space;\wedge&space;\neg(&space;r_2&space;\vee&space;b_2)&space;\wedge&space;\neg(&space;r_3&space;\vee&space;b_3)&space;]}&space;C((&space;g_1&space;\vee&space;y_1)&space;\wedge&space;(&space;g_2&space;\vee&space;y_2)&space;\wedge&space;(&space;g_3&space;\vee&space;y_3&space;)&space;$$" title="$$ M \models {[ \neg( r_1 \vee b_1) \wedge \neg( r_2 \vee b_2) \wedge \neg( r_3 \vee b_3) ]} C(( g_1 \vee y_1) \wedge ( g_2 \vee y_2) \wedge ( g_3 \vee y_3 ) $$" /></a>-->
+
+							</p>
+
+							<p>
+								If the had instead made the guess 'yellow blue blue' the would get feedback of one white peg which results in:
+
+							</p>
+
+
+							<p>
+
+								<img src="images/strat_onein_2.gif">
+								<!-- <a href="https://www.codecogs.com/eqnedit.php?latex=$$&space;M&space;\models&space;{[&space;(&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;b_3)&space;]}&space;C((&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;y_3&space;)&space;$$" target="_blank"><img src="https://latex.codecogs.com/gif.latex?$$&space;M&space;\models&space;{[&space;(&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;b_3)&space;]}&space;C((&space;y_1&space;\vee&space;b_1)&space;\vee&space;(&space;y_2&space;\vee&space;b_2)&space;\vee&space;(&space;y_3&space;\vee&space;y_3&space;)&space;$$" title="$$ M \models {[ ( y_1 \vee b_1) \vee ( y_2 \vee b_2) \vee ( y_3 \vee b_3) ]} C(( y_1 \vee b_1) \vee ( y_2 \vee b_2) \vee ( y_3 \vee y_3 ) $$" /></a>-->
+							</p>
+
+							<p>
+								The second announcement excludes far less states for the opponent, so it is more desirable for the current player.
+							</p>
+
+
 						</section>
 
 						<section>
