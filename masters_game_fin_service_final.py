@@ -3,13 +3,39 @@ from flask import request
 from flask import Response
 from flask import json
 import numpy as np
+from flask_cors import CORS
 from optparse import OptionParser
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/get_comp_code', methods = ['GET'])
 def api_get_comp_code():
+
+    global colorList,game_size,valid_states_1,valid_states_2,code_comb_list,code_2
+
+    colorList = ['r','g','b','y']
+    game_size = 3
+    valid_states_1 = {}
+    valid_states_2 = {}
+    code_comb_list = []
+    code_2_in = np.random.randint(65,size=1)
+    ct = 0
+    code_1 = ''
+    code_2 = ''
+    for i in range(0,len(colorList)):
+        code_comb_1 = colorList[i]
+        for j in range(0,len(colorList)):
+            code_comb_2 = code_comb_1 + colorList[j]
+            for k in range(0,len(colorList)):
+                code_comb_3 = code_comb_2 + colorList[k]
+                ct = ct+1
+                if ct == code_2_in:
+                    code_2 = code_comb_3
+                code_comb_list.append(code_comb_3)
+                valid_states_1[code_comb_3] = 1
+                valid_states_2[code_comb_3] = 1
 
     data = {
         'code'  : code_2
@@ -227,10 +253,12 @@ def make_guess(cur_player,valid_states,code_comb_list,cur_code,colorList):
                 code_pref_list[5] = i
             elif feedback_cur == 'wbw' or feedback_cur == 'wwb' or feedback_cur == 'bww':
                 code_pref_list[6] = i
-            elif feedback_cur == 'bbb':
+            elif feedback_cur == 'wbb' or feedback_cur == 'bwb' or feedback_cur == 'bbw':
                 code_pref_list[7] = i
-            elif feedback_cur == '':
+            elif feedback_cur == 'bbb':
                 code_pref_list[8] = i
+            elif feedback_cur == '':
+                code_pref_list[9] = i
 
 
 
