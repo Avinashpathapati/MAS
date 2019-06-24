@@ -1,5 +1,6 @@
 import numpy as np
 from optparse import OptionParser
+import tkinter
 
 
 def feedback_from_1_or_2(cur_player_guess,code,colorList):
@@ -236,6 +237,9 @@ def play_game(gsize,colorList):
 
 
 		cur_move  += 1
+
+def mastermind_board(colorList, gameSize):
+	
 
 
 
