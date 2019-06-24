@@ -1,6 +1,5 @@
 # MAS
 Install flask with the below command<br/>
-
 pip install Flask<br/>
 
 Install flask-cors with the below command<br/>
