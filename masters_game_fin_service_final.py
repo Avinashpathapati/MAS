@@ -80,6 +80,32 @@ def api_filter_invalid_states():
             return resp
 
 
+@app.route('/filter_invalid_states_and_guess', methods = ['POST'])
+def filter_invalid_states_and_guess():
+    if request.headers['Content-Type'] == 'application/json':
+        js = request.json
+        if js['data'] and js['data']['user_guess_code']:
+            filtered_states_and_knowledge = {}
+            user_code = js['data']['user_code']
+            user_guess_code = js['data']['user_guess_code']
+            computer_code = code_2
+            guess_code = make_guess(2,valid_states_2,code_comb_list,code_2,colorList)
+            feedback_one_f_comp,feedback_two_f_comp = get_feedbacks(guess_code,user_code,code_2,colorList)
+            feedback_one_f_user,feedback_two_f_user = get_feedbacks(user_guess_code,user_code,code_2,colorList)
+            filter_inval_states_aft_mov(feedback_one_f_comp,guess_code,valid_states_2,colorList,user_code)
+            filter_inval_states_aft_mov(feedback_two_f_user,user_guess_code,valid_states_1,colorList,code_2)
+            know_val2 = current_knowldege(2,valid_states_2,colorList)
+            know_val1 = current_knowldege(1,valid_states_1,colorList)
+            filtered_states_and_knowledge['comp_states'] = valid_states_2
+            filtered_states_and_knowledge['comp_know'] = know_val2
+            filtered_states_and_knowledge['user_states'] = valid_states_1
+            filtered_states_and_knowledge['user_know'] = know_val1
+            filtered_states_and_knowledge['comp_guess_code'] = guess_code
+            js = json.dumps(filtered_states_and_knowledge)
+            resp = Response(js, status=200, mimetype='application/json')
+            return resp
+
+
 def feedback_from_1_or_2(cur_player_guess,code,colorList):
 
     code_loc_list = {}
